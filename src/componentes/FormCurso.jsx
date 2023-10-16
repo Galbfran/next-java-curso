@@ -1,8 +1,8 @@
 "use client";
 
 import  { useState } from 'react';
-
-function CursoForm() {
+import axios from 'axios';
+function CursoForm({setActualizar , actualizar}) {
     const [formData, setFormData] = useState({
         nombre: '',
         modalidad: 'virtual',
@@ -28,9 +28,27 @@ function CursoForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Aquí puedes enviar los datos al servidor o realizar otras acciones
-        // utilizando formData para obtener los valores ingresados.
-        console.log(formData)
+
+        // Crear un objeto con los datos del formulario
+        const cursoData = {
+            nombre: formData.nombre,
+            modalidad: formData.modalidad,
+            fecha_finalizacion: formData.fecha_finalizacion
+        };
+
+        // Realizar la solicitud POST con Axios
+        axios.post('https://practicas-java-production.up.railway.app/curso/crear', cursoData)
+            .then((response) => {
+                // Realizar acciones adicionales después de enviar los datos, si es necesario
+                console.log('Solicitud POST exitosa', response.data);
+            })
+            .catch((error) => {
+                console.error('Error al realizar la solicitud POST:', error);
+            });
+            setActualizar(!actualizar);
+            console.log(actualizar);
+            handleReset();
+            console.log(actualizar);
     };
 
     return (
