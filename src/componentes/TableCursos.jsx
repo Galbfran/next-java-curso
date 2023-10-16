@@ -44,7 +44,7 @@ const TableCursos = ({actualizar}) => {
     });
 
     return (
-        <div className="container border m-2 rounded p-3">
+        <div className="container border m-auto my-3 rounded p-3">
             <table className="table">
                 <thead>
                     <tr>
