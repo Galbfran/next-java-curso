@@ -17,6 +17,15 @@ function CursoForm() {
         });
     };
 
+    const handleReset = (event) => {
+        setFormData({
+            nombre: '',
+            modalidad: 'virtual',
+            fecha_finalizacion: ''
+        })
+    }
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // Aquí puedes enviar los datos al servidor o realizar otras acciones
@@ -25,23 +34,25 @@ function CursoForm() {
     };
 
     return (
-        <div>
-            <h2>Ingresar Datos del Curso</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
+        <div className="container border m-2  rounded p-3">
+            <h4>Ingresar Datos del Curso:</h4>
+            <form onSubmit={handleSubmit} className='d-flex space-around justify-content-center gap-3'>
+                <label className="form-label">
                     Nombre del Curso:
                     <input
+                        className="form-control"
                         type="text"
                         name="nombre"
                         value={formData.nombre}
                         onChange={handleInputChange}
                         required
                     />
-                </label><br /><br />
+                </label>
 
-                <label>
+                <label className="form-label">
                     Modalidad:
                     <select
+                        className="form-select"
                         name="modalidad"
                         value={formData.modalidad}
                         onChange={handleInputChange}
@@ -50,20 +61,22 @@ function CursoForm() {
                         <option value="presencial">Presencial</option>
                         <option value="semipresencial">Semipresencial</option>
                     </select>
-                </label><br /><br />
+                </label>
 
-                <label>
+                <label className="form-label">
                     Fecha de Finalización:
                     <input
+                        className="form-control"
                         type="date"
                         name="fecha_finalizacion"
                         value={formData.fecha_finalizacion}
                         onChange={handleInputChange}
                         required
                     />
-                </label><br /><br />
-
-                <button type="submit">Guardar</button>
+                </label>
+                
+                <button className="btn btn-success" type="submit">Guardar</button>
+                <button className="btn btn-danger" onClick={handleReset}>Reset</button>
             </form>
         </div>
     );
